@@ -1,0 +1,8 @@
+The main data structure that I have used in my project is a 2D array made up of a block structure. I created a block structure that contains a tag field, a valid bit field, hits,misses,reads,writes, and a counter to keep track for my FIFO and LRU methods. Each row of the 2D array is considered a "set", containing the block structure I had created. Depending on associativity, each set/row will have all of the blocks, one block, or N-blocks. The first row of the 2D array is set 0, second row set 1, and so on. 
+
+What I had observed with prefetching is that the number of HITS had INCREASED, and the number of misses had decreased. The reason for this
+outcome is because prefetching exploits the idea of spatial locality, and allows the spatial locality of the cache to exceed its cachelines. Once the original block has been inserted into the cache, the prefetcher then retrieves the adjacent address by adding the original address to the block size, and then also inserts that block into the cache (only if the original block was a miss). So not only is the original address in the cache, but the adjacent block is also in the cache which explains the reason for increased hits and less misses. Whenever a prefetched block is placed in the cache, this also INCREASED the amount of READS, because every time a prefetched block is placed in the cache, it must also read that block into the cache.
+
+The prefetcher retrieves the adjacent block before we know it is even needed, so there is a chance we read that block into the cache even though it will never be accessed, but regardless, prefetching still increases the overall hit rate.
+
+I have also implemented an LRU function for the EXTRA CREDIT.
